@@ -1,5 +1,20 @@
 import React from 'react';
+import { Eye, Check, Clock } from 'lucide-react';
 import { MetricCardProps } from '../../../types/dashboard.types';
+
+// Helper function to render icon based on iconName
+const renderIcon = (iconName: string) => {
+  switch(iconName) {
+    case 'Eye':
+      return <Eye className="h-6 w-6" />;
+    case 'Check':
+      return <Check className="h-6 w-6" />;
+    case 'Clock':
+      return <Clock className="h-6 w-6" />;
+    default:
+      return <Eye className="h-6 w-6" />;
+  }
+};
 
 const MetricCard: React.FC<MetricCardProps> = ({
   title,
@@ -66,4 +81,3 @@ const MetricCard: React.FC<MetricCardProps> = ({
 };
 
 export default MetricCard;
-

@@ -1,10 +1,10 @@
 import React from 'react';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, Eye, Activity, FileText, Instagram, ShoppingBag, Package, BarChart2 } from 'lucide-react';
 
 interface NavigationItem {
   id: string;
   label: string;
-  icon: React.ReactNode;
+  iconName: string;
   hasChildren?: boolean;
 }
 
@@ -13,6 +13,28 @@ interface SidebarProps {
   activeTab: string;
   onTabChange: (tabId: string) => void;
 }
+
+// Helper function to render icon based on iconName
+const renderIcon = (iconName: string) => {
+  switch(iconName) {
+    case 'Eye':
+      return <Eye className="h-5 w-5 mr-3" />;
+    case 'Activity':
+      return <Activity className="h-5 w-5 mr-3" />;
+    case 'FileText':
+      return <FileText className="h-5 w-5 mr-3" />;
+    case 'Instagram':
+      return <Instagram className="h-5 w-5 mr-3" />;
+    case 'ShoppingBag':
+      return <ShoppingBag className="h-5 w-5 mr-3" />;
+    case 'Package':
+      return <Package className="h-5 w-5 mr-3" />;
+    case 'BarChart2':
+      return <BarChart2 className="h-5 w-5 mr-3" />;
+    default:
+      return <Activity className="h-5 w-5 mr-3" />;
+  }
+};
 
 const Sidebar: React.FC<SidebarProps> = ({
   navigationItems,
@@ -32,7 +54,7 @@ const Sidebar: React.FC<SidebarProps> = ({
             onClick={() => onTabChange(item.id)}
           >
             <div className="flex items-center">
-              {item.icon}
+              {renderIcon(item.iconName)}
               <span className="text-sm font-medium">{item.label}</span>
             </div>
             {item.hasChildren && <ChevronRight className="h-4 w-4" />}
@@ -43,4 +65,4 @@ const Sidebar: React.FC<SidebarProps> = ({
   );
 };
 
-export default Sidebar;
+export default Sidebar;

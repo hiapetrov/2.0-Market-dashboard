@@ -16,4 +16,8 @@ code {
     monospace;
 }
 
-
+.app-container {
+  max-width: 1400px; /* Change this value to make your app wider or narrower */
+  margin: 0 auto;
+  padding: 0 20px;
+}

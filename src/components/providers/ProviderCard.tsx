@@ -1,9 +1,19 @@
 import React from 'react';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, Package } from 'lucide-react';
 import { ProviderCardProps } from '../../types/provider.types';
 
+// Helper function to render icon based on iconName
+const getIcon = (iconName: string) => {
+  switch(iconName) {
+    case 'Package':
+      return <Package />;
+    default:
+      return <Package />;
+  }
+};
+
 const ProviderCard: React.FC<ProviderCardProps> = ({ provider }) => {
-  const { name, icon, connected, lastSyncTime, colorFrom, colorTo, stats } = provider;
+  const { name, iconName, connected, lastSyncTime, colorFrom, colorTo, stats } = provider;
   
   const getStatusColor = (status: string) => {
     switch(status) {
@@ -36,7 +46,7 @@ const ProviderCard: React.FC<ProviderCardProps> = ({ provider }) => {
       <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${colorFrom} ${colorTo} rounded-t-lg`}></div>
       <div className="flex items-center mb-4 pt-3">
         <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${colorFrom} ${colorTo} flex items-center justify-center text-white mr-4`}>
-          {icon}
+          {getIcon(iconName)}
         </div>
         <div>
           <h3 className="text-lg font-semibold text-gray-900">{name}</h3>
@@ -80,4 +90,3 @@ const ProviderCard: React.FC<ProviderCardProps> = ({ provider }) => {
 };
 
 export default ProviderCard;
-

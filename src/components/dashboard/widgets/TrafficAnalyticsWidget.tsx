@@ -4,7 +4,7 @@ import { WidgetProps } from '../../../types/dashboard.types';
 import { dashboardApi } from '../../../data/mockApi';
 
 const TrafficAnalyticsWidget: React.FC<WidgetProps> = ({ isEditMode, onRemove }) => {
-  const [trafficData, setTrafficData] = useState([]);
+  const [trafficData, setTrafficData] = useState<any[]>([]);
   const [timeRange, setTimeRange] = useState('7d');
   const [loading, setLoading] = useState(true);
   
@@ -83,4 +83,3 @@ const TrafficAnalyticsWidget: React.FC<WidgetProps> = ({ isEditMode, onRemove })
 };
 
 export default TrafficAnalyticsWidget;
-

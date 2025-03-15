@@ -89,4 +89,3 @@ export const providerApi = {
     return { success: true, providerId };
   }
 };
-

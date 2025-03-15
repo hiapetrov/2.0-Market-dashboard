@@ -17,13 +17,13 @@ export interface ActivityItem {
   id: number;
   event: string;
   time: string;
-  icon?: ReactNode;
+  iconName?: string;
 }
 
 export interface Widget {
   id: string;
   name: string;
-  icon: ReactNode;
+  iconName: string;
   color?: string;
 }
 
@@ -55,7 +55,7 @@ export interface AddWidgetModalProps {
 export interface QuickAction {
   id: string;
   label: string;
-  icon: ReactNode;
+  iconName: string;
   bgColor: string;
   borderColor: string;
   hoverColor: string;

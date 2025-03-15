@@ -1,5 +1,16 @@
 import React from 'react';
+import { Package } from 'lucide-react';
 import { ConnectProviderProps } from '../../types/provider.types';
+
+// Helper function to render icon based on iconName
+const getIcon = (iconName: string) => {
+  switch(iconName) {
+    case 'Package':
+      return <Package />;
+    default:
+      return <Package />;
+  }
+};
 
 const ConnectProvider: React.FC<ConnectProviderProps> = ({
   availableProviders,
@@ -16,7 +27,7 @@ const ConnectProvider: React.FC<ConnectProviderProps> = ({
             onClick={() => onConnect(provider.id)}
           >
             <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${provider.colorFrom} ${provider.colorTo} flex items-center justify-center text-white mb-2`}>
-              {provider.icon}
+              {getIcon(provider.iconName)}
             </div>
             <span className="text-sm text-gray-800">{provider.name}</span>
           </button>
@@ -27,4 +38,3 @@ const ConnectProvider: React.FC<ConnectProviderProps> = ({
 };
 
 export default ConnectProvider;
-

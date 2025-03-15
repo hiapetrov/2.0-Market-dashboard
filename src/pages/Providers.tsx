@@ -18,7 +18,7 @@ const Providers: React.FC = () => {
           providerApi.getAvailableProviders()
         ]);
         
-        setConnectedProviders(connected);
+        setConnectedProviders([]);
         setAvailableProviders(available);
       } catch (error) {
         console.error('Error fetching provider data:', error);

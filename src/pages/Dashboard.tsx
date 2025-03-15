@@ -1,14 +1,101 @@
 import React, { useState, useEffect } from 'react';
 import DashboardHeader from '../components/dashboard/DashboardHeader';
-import AddWidgetButton from '../components/dashboard/AddWidgetButton';
-import AddWidgetModal from '../components/dashboard/AddWidgetModal';
 import MetricCard from '../components/dashboard/widgets/MetricCard';
 import TrafficAnalyticsWidget from '../components/dashboard/widgets/TrafficAnalyticsWidget';
 import ActivityFeedWidget from '../components/dashboard/widgets/ActivityFeedWidget';
-import TrafficSourcesWidget from '../components/dashboard/widgets/TrafficSourcesWidget';
-import QuickActionsWidget from '../components/dashboard/widgets/QuickActionsWidget';
 import { dashboardApi } from '../data/mockApi';
-import { Widget } from '../types/dashboard.types';
+import { Widget, WidgetProps } from '../types/dashboard.types';
+
+// Mock the missing component (this would be replaced with actual components)
+const AddWidgetButton: React.FC<{onClick: () => void}> = ({ onClick }) => (
+  <div 
+    className="bg-gray-800 border-2 border-dashed border-gray-700 rounded-lg p-8 flex flex-col items-center justify-center cursor-pointer hover:shadow-lg transition-all hover:border-gray-600"
+    onClick={onClick}
+  >
+    <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white h-12 w-12 rounded-full flex items-center justify-center mb-3 text-xl font-bold shadow-md">
+      +
+    </div>
+    <p className="text-white font-medium">Add Widget</p>
+    <p className="text-gray-400 text-sm mt-1">Choose from available widgets</p>
+  </div>
+);
+
+// Mock the missing component (this would be replaced with actual components)
+const AddWidgetModal: React.FC<{
+  onClose: () => void, 
+  onAdd: (widgetId: string) => void, 
+  availableWidgets: Widget[], 
+  activeWidgets: string[]
+}> = ({ onClose, onAdd, availableWidgets, activeWidgets }) => (
+  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
+    <div className="bg-gray-800 p-6 rounded-lg max-w-lg w-full">
+      <h2 className="text-white text-xl mb-4">Select Widget</h2>
+      <div className="grid grid-cols-2 gap-3">
+        {availableWidgets.filter(w => !activeWidgets.includes(w.id)).map(widget => (
+          <button
+            key={widget.id}
+            className="bg-gray-700 hover:bg-gray-600 p-3 rounded-lg flex flex-col items-center"
+            onClick={() => onAdd(widget.id)}
+          >
+            <div className="mb-2">{widget.iconName}</div>
+            <span className="text-sm text-white">{widget.name}</span>
+          </button>
+        ))}
+      </div>
+      <div className="mt-4 flex justify-end">
+        <button onClick={onClose} className="bg-gray-700 text-white px-4 py-2 rounded-md">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+);
+
+// Placeholder QuickActionsWidget component
+const QuickActionsWidget: React.FC<WidgetProps> = ({ isEditMode, onRemove }) => (
+  <div className="relative bg-gray-800 rounded-lg shadow-md p-6 mb-6 hover:shadow-lg transition-all border border-gray-700">
+    {isEditMode && onRemove && (
+      <button 
+        onClick={onRemove}
+        className="absolute -top-2 -right-2 bg-gray-700 text-red-400 rounded-full h-6 w-6 flex items-center justify-center shadow-sm hover:bg-gray-600"
+      >
+        ×
+      </button>
+    )}
+    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-t-lg"></div>
+    <h3 className="text-lg font-medium text-white mb-4 pt-3">Quick Actions</h3>
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+      {/* Quick action buttons would be rendered here */}
+      <div className="bg-indigo-900 border border-indigo-700 rounded-lg p-4 flex flex-col items-center hover:bg-indigo-800">
+        <span className="text-cyan-400 mb-3">📝</span>
+        <span className="text-sm text-white">Create Content</span>
+      </div>
+      <div className="bg-purple-900 border border-purple-700 rounded-lg p-4 flex flex-col items-center hover:bg-purple-800">
+        <span className="text-cyan-400 mb-3">📱</span>
+        <span className="text-sm text-white">Post to Social</span>
+      </div>
+    </div>
+  </div>
+);
+
+// Placeholder TrafficSourcesWidget component
+const TrafficSourcesWidget: React.FC<WidgetProps> = ({ isEditMode, onRemove }) => (
+  <div className="relative bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-all border border-gray-700">
+    {isEditMode && onRemove && (
+      <button 
+        onClick={onRemove}
+        className="absolute -top-2 -right-2 bg-gray-700 text-red-400 rounded-full h-6 w-6 flex items-center justify-center shadow-sm hover:bg-gray-600"
+      >
+        ×
+      </button>
+    )}
+    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-t-lg"></div>
+    <h3 className="text-lg font-medium text-white mb-4 pt-3">Traffic Sources</h3>
+    <div className="flex justify-center items-center h-64">
+      <div className="text-white">Pie chart placeholder</div>
+    </div>
+  </div>
+);
 
 const Dashboard: React.FC = () => {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -82,7 +169,7 @@ const Dashboard: React.FC = () => {
       {(activeWidgets.includes('visitors') || activeWidgets.includes('conversion') || activeWidgets.includes('time-on-site')) && (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           {/* Visitors Card */}
-          {activeWidgets.includes('visitors') && (
+          {activeWidgets.includes('visitors') && metricsData?.visitors && (
             <div className="col-span-1">
               <MetricCard 
                 title={metricsData.visitors.title}
@@ -98,7 +185,7 @@ const Dashboard: React.FC = () => {
           )}
           
           {/* Conversion Card */}
-          {activeWidgets.includes('conversion') && (
+          {activeWidgets.includes('conversion') && metricsData?.conversion && (
             <div className="col-span-1">
               <MetricCard 
                 title={metricsData.conversion.title}
@@ -114,7 +201,7 @@ const Dashboard: React.FC = () => {
           )}
           
           {/* Time on Site Card */}
-          {activeWidgets.includes('time-on-site') && (
+          {activeWidgets.includes('time-on-site') && metricsData?.timeOnSite && (
             <div className="col-span-1">
               <MetricCard 
                 title={metricsData.timeOnSite.title}
@@ -191,4 +278,3 @@ const Dashboard: React.FC = () => {
 };
 
 export default Dashboard;
-

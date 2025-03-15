@@ -1,13 +1,9 @@
-import React from 'react';
-import { Package } from 'lucide-react';
-import { Provider, AvailableProvider } from '../types/provider.types';
-
 // Connected providers
-export const connectedProviders: Provider[] = [
+export const connectedProviders = [
   {
     id: 'printify',
     name: 'Printify',
-    icon: <Package />,
+    iconName: 'Package',
     connected: true,
     lastSyncTime: '2h ago',
     colorFrom: 'from-blue-400',
@@ -22,34 +18,33 @@ export const connectedProviders: Provider[] = [
 ];
 
 // Available providers to connect
-export const availableProviders: AvailableProvider[] = [
+export const availableProviders = [
   {
     id: 'printful',
     name: 'Printful',
-    icon: <Package />,
+    iconName: 'Package',
     colorFrom: 'from-purple-400',
     colorTo: 'to-purple-600'
   },
   {
     id: 'gooten',
     name: 'Gooten',
-    icon: <Package />,
+    iconName: 'Package',
     colorFrom: 'from-amber-400',
     colorTo: 'to-amber-600'
   },
   {
     id: 'spod',
     name: 'SPOD',
-    icon: <Package />,
+    iconName: 'Package',
     colorFrom: 'from-green-400',
     colorTo: 'to-green-600'
   },
   {
     id: 'other',
     name: 'Other',
-    icon: <Package />,
+    iconName: 'Package',
     colorFrom: 'from-indigo-400',
     colorTo: 'to-indigo-600'
   }
 ];
-

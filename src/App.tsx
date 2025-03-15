@@ -12,12 +12,17 @@ const App: React.FC = () => {
   };
   
   return (
-    <MainLayout defaultTab={activeTab} onTabChange={handleTabChange}>
-      {activeTab === 'dashboard' && <Dashboard />}
-      {activeTab === 'marketplaces' && <Marketplaces />}
-      {activeTab === 'providers' && <Providers />}
-      {/* Add other tabs as needed */}
-    </MainLayout>
+    // The outer div is full-width with background color
+    <div className="min-h-screen bg-gray-900 w-full">
+      {/* The inner div constrains the content width */}
+      <div className="max-w-[1400px] mx-auto">
+        <MainLayout defaultTab={activeTab} onTabChange={handleTabChange}>
+          {activeTab === 'dashboard' && <Dashboard />}
+          {activeTab === 'marketplaces' && <Marketplaces />}
+          {activeTab === 'providers' && <Providers />}
+        </MainLayout>
+      </div>
+    </div>
   );
 };
 

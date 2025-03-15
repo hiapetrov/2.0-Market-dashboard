@@ -1,5 +1,3 @@
-import { ReactNode } from 'react';
-
 export interface ProviderStats {
   products: number;
   inProduction: number;
@@ -10,7 +8,7 @@ export interface ProviderStats {
 export interface Provider {
   id: string;
   name: string;
-  icon: ReactNode;
+  iconName: string;
   connected: boolean;
   lastSyncTime: string;
   colorFrom: string;
@@ -21,7 +19,7 @@ export interface Provider {
 export interface AvailableProvider {
   id: string;
   name: string;
-  icon: ReactNode;
+  iconName: string;
   colorFrom: string;
   colorTo: string;
 }
@@ -34,4 +32,3 @@ export interface ConnectProviderProps {
   availableProviders: AvailableProvider[];
   onConnect: (providerId: string) => void;
 }
-

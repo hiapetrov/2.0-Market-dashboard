@@ -17,4 +17,3 @@ const AddWidgetButton: React.FC<AddWidgetButtonProps> = ({ onClick }) => {
 };
 
 export default AddWidgetButton;
-

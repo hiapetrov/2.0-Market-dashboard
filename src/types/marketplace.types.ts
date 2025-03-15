@@ -1,5 +1,3 @@
-import { ReactNode } from 'react';
-
 export interface MarketplaceStats {
   products: number;
   orders: number;
@@ -10,7 +8,7 @@ export interface MarketplaceStats {
 export interface Marketplace {
   id: string;
   name: string;
-  icon: ReactNode;
+  iconName: string;
   connected: boolean;
   syncStatus: string;
   colorFrom: string;
@@ -21,7 +19,7 @@ export interface Marketplace {
 export interface AvailableMarketplace {
   id: string;
   name: string;
-  icon: ReactNode;
+  iconName: string;
   colorFrom: string;
   colorTo: string;
 }
@@ -34,4 +32,3 @@ export interface ConnectMarketplaceProps {
   availableMarketplaces: AvailableMarketplace[];
   onConnect: (marketplaceId: string) => void;
 }
-

@@ -1,8 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { ExternalLink, Activity } from 'lucide-react';
+import { ExternalLink, Activity, FileText, Instagram } from 'lucide-react';
 import { WidgetProps } from '../../../types/dashboard.types';
 import { ActivityItem } from '../../../types/dashboard.types';
 import { dashboardApi } from '../../../data/mockApi';
+
+// Helper function to render icon based on iconName
+const renderIcon = (iconName: string) => {
+  switch(iconName) {
+    case 'Activity':
+      return <Activity className="h-5 w-5" />;
+    case 'FileText':
+      return <FileText className="h-5 w-5" />;
+    case 'Instagram':
+      return <Instagram className="h-5 w-5" />;
+    default:
+      return <Activity className="h-5 w-5" />;
+  }
+};
 
 const ActivityFeedWidget: React.FC<WidgetProps> = ({ isEditMode, onRemove }) => {
   const [activities, setActivities] = useState<ActivityItem[]>([]);
@@ -51,7 +65,7 @@ const ActivityFeedWidget: React.FC<WidgetProps> = ({ isEditMode, onRemove }) => 
           {activities.slice(0, 3).map((activity) => (
             <div key={activity.id} className="px-6 py-4 flex items-start">
               <div className="h-10 w-10 rounded-full bg-indigo-800 flex items-center justify-center text-cyan-400 mr-4">
-                {activity.icon || <Activity className="h-5 w-5" />}
+                {activity.iconName ? renderIcon(activity.iconName) : <Activity className="h-5 w-5" />}
               </div>
               <div>
                 <p className="text-gray-200">{activity.event}</p>
@@ -66,4 +80,3 @@ const ActivityFeedWidget: React.FC<WidgetProps> = ({ isEditMode, onRemove }) => 
 };
 
 export default ActivityFeedWidget;
-

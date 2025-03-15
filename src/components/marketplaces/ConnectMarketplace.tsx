@@ -1,5 +1,16 @@
 import React from 'react';
+import { ShoppingBag } from 'lucide-react';
 import { ConnectMarketplaceProps } from '../../types/marketplace.types';
+
+// Helper function to render icon based on iconName
+const getIcon = (iconName: string) => {
+  switch(iconName) {
+    case 'ShoppingBag':
+      return <ShoppingBag />;
+    default:
+      return <ShoppingBag />;
+  }
+};
 
 const ConnectMarketplace: React.FC<ConnectMarketplaceProps> = ({
   availableMarketplaces,
@@ -16,7 +27,7 @@ const ConnectMarketplace: React.FC<ConnectMarketplaceProps> = ({
             onClick={() => onConnect(marketplace.id)}
           >
             <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${marketplace.colorFrom} ${marketplace.colorTo} flex items-center justify-center text-white mb-2`}>
-              {marketplace.icon}
+              {getIcon(marketplace.iconName)}
             </div>
             <span className="text-sm text-gray-800">{marketplace.name}</span>
           </button>
@@ -27,4 +38,3 @@ const ConnectMarketplace: React.FC<ConnectMarketplaceProps> = ({
 };
 
 export default ConnectMarketplace;
-

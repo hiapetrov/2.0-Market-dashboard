@@ -1,13 +1,9 @@
-import React from 'react';
-import { ShoppingBag } from 'lucide-react';
-import { Marketplace, AvailableMarketplace } from '../types/marketplace.types';
-
 // Connected marketplaces
-export const connectedMarketplaces: Marketplace[] = [
+export const connectedMarketplaces = [
   {
     id: 'shopify',
     name: 'Shopify',
-    icon: <ShoppingBag />,
+    iconName: 'ShoppingBag',
     connected: true,
     syncStatus: 'Sync active',
     colorFrom: 'from-green-400',
@@ -22,7 +18,7 @@ export const connectedMarketplaces: Marketplace[] = [
   {
     id: 'etsy',
     name: 'Etsy',
-    icon: <ShoppingBag />,
+    iconName: 'ShoppingBag',
     connected: true,
     syncStatus: 'Sync active',
     colorFrom: 'from-orange-400',
@@ -37,34 +33,33 @@ export const connectedMarketplaces: Marketplace[] = [
 ];
 
 // Available marketplaces to connect
-export const availableMarketplaces: AvailableMarketplace[] = [
+export const availableMarketplaces = [
   {
     id: 'amazon',
     name: 'Amazon',
-    icon: <ShoppingBag />,
+    iconName: 'ShoppingBag',
     colorFrom: 'from-blue-400',
     colorTo: 'to-blue-600'
   },
   {
     id: 'walmart',
     name: 'Walmart',
-    icon: <ShoppingBag />,
+    iconName: 'ShoppingBag',
     colorFrom: 'from-purple-400',
     colorTo: 'to-purple-600'
   },
   {
     id: 'ebay',
     name: 'eBay',
-    icon: <ShoppingBag />,
+    iconName: 'ShoppingBag',
     colorFrom: 'from-red-400',
     colorTo: 'to-red-600'
   },
   {
     id: 'other',
     name: 'Other',
-    icon: <ShoppingBag />,
+    iconName: 'ShoppingBag',
     colorFrom: 'from-indigo-400',
     colorTo: 'to-indigo-600'
   }
 ];
-

@@ -72,4 +72,3 @@ const Marketplaces: React.FC = () => {
 };
 
 export default Marketplaces;
-
