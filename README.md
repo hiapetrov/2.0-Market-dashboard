@@ -100,7 +100,7 @@ This project is licensed under the GNU Affero General Public License v3.0 (AGPL-
 
 ### Commercial Licensing
 
-For commercial licensing options that remove AGPL-3.0 restrictions, please contact [your contact information].
+For commercial licensing options that remove AGPL-3.0 restrictions, please contact hi.apetrov@gmail.com
 
 This dual licensing approach allows:
 - Free use under AGPL-3.0 for open source projects and non-commercial use
