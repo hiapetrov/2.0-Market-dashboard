@@ -48,14 +48,14 @@ The Corporation should inform all Employees who submit Contributions that their 
 
 ## 8. Miscellaneous
 
-This Agreement is governed by the laws of [Your Jurisdiction] and applicable copyright laws. If any provision of this Agreement is found void and unenforceable, such provision will be replaced to the extent possible with a provision that comes closest to the meaning of the original provision.
+This Agreement is governed by the laws of Delaware, USA and applicable copyright laws. If any provision of this Agreement is found void and unenforceable, such provision will be replaced to the extent possible with a provision that comes closest to the meaning of the original provision.
 
 ## Corporate Details and Signature
 
 To agree to this Corporate CLA, Corporation must:
 1. Fill out the required information below
 2. Sign this document
-3. Send a copy to [your contact information]
+3. Send a copy to hi.apetrov@gmail.com
 
 **Corporation Name**: 
 
