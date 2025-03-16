@@ -1,24 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import DashboardHeader from '../components/dashboard/DashboardHeader';
-import MetricCard from '../components/dashboard/widgets/MetricCard';
+import { MetricCard } from '../widgets/metric-card';
 import TrafficAnalyticsWidget from '../components/dashboard/widgets/TrafficAnalyticsWidget';
 import ActivityFeedWidget from '../components/dashboard/widgets/ActivityFeedWidget';
+//import QuickActionsWidget from '../components/dashboard/widgets/QuickActionsWidget';
+//import TrafficSourcesWidget from '../components/dashboard/widgets/TrafficSourcesWidget';
+//import AddWidgetModal from '../components/dashboard/AddWidgetModal';
 import { dashboardApi } from '../data/mockApi';
-import { Widget, WidgetProps } from '../types/dashboard.types';
-
-// Mock the missing component (this would be replaced with actual components)
-const AddWidgetButton: React.FC<{onClick: () => void}> = ({ onClick }) => (
-  <div 
-    className="bg-gray-800 border-2 border-dashed border-gray-700 rounded-lg p-8 flex flex-col items-center justify-center cursor-pointer hover:shadow-lg transition-all hover:border-gray-600"
-    onClick={onClick}
-  >
-    <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white h-12 w-12 rounded-full flex items-center justify-center mb-3 text-xl font-bold shadow-md">
-      +
-    </div>
-    <p className="text-white font-medium">Add Widget</p>
-    <p className="text-gray-400 text-sm mt-1">Choose from available widgets</p>
-  </div>
-);
+import { Widget, WidgetProps } from '../entities/dashboard';
+import { AddWidgetButton } from '../features/widget-management';
 
 // Mock the missing component (this would be replaced with actual components)
 const AddWidgetModal: React.FC<{
@@ -277,4 +267,4 @@ const Dashboard: React.FC = () => {
   );
 };
 
-export default Dashboard;
+export default Dashboard

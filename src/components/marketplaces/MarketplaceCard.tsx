@@ -1,10 +1,12 @@
 import React from 'react';
 import { ExternalLink } from 'lucide-react';
-import { Marketplace, MarketplaceCardProps} from '../../entities/marketplace';
+import { Marketplace } from '../../entities/marketplace';
 import { renderIcon } from '../../shared/lib';
 import { Card } from '../../shared/ui';
 
-
+interface MarketplaceCardProps {
+  marketplace: Marketplace;
+}
 
 const MarketplaceCard: React.FC<MarketplaceCardProps> = ({ marketplace }) => {
   const { name, iconName, connected, syncStatus, colorFrom, colorTo, stats } = marketplace;
@@ -18,8 +20,7 @@ const MarketplaceCard: React.FC<MarketplaceCardProps> = ({ marketplace }) => {
   };
   
   return (
-    <div className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
-      <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${colorFrom} ${colorTo} rounded-t-lg`}></div>
+    <Card gradient={{ from: colorFrom, to: colorTo }}>
       <div className="flex items-center mb-4 pt-3">
         <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${colorFrom} ${colorTo} flex items-center justify-center text-white mr-4`}>
           {renderIcon(iconName)}
@@ -58,7 +59,7 @@ const MarketplaceCard: React.FC<MarketplaceCardProps> = ({ marketplace }) => {
           Bulk Edit Products <ExternalLink className="h-3 w-3 ml-1" />
         </button>
       </div>
-    </div>
+    </Card>
   );
 };
 

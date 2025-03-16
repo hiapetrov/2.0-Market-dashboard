@@ -1,16 +1,12 @@
 import React from 'react';
-import { ExternalLink, Package } from 'lucide-react';
-import { ProviderCardProps } from '../../types/provider.types';
+import { ExternalLink } from 'lucide-react';
+import { Provider } from '../../entities/provider';
+import { renderIcon } from '../../shared/lib';
+import { Card } from '../../shared/ui';
 
-// Helper function to render icon based on iconName
-const getIcon = (iconName: string) => {
-  switch(iconName) {
-    case 'Package':
-      return <Package />;
-    default:
-      return <Package />;
-  }
-};
+interface ProviderCardProps {
+  provider: Provider;
+}
 
 const ProviderCard: React.FC<ProviderCardProps> = ({ provider }) => {
   const { name, iconName, connected, lastSyncTime, colorFrom, colorTo, stats } = provider;
@@ -42,11 +38,10 @@ const ProviderCard: React.FC<ProviderCardProps> = ({ provider }) => {
   };
   
   return (
-    <div className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
-      <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${colorFrom} ${colorTo} rounded-t-lg`}></div>
+    <Card gradient={{ from: colorFrom, to: colorTo }}>
       <div className="flex items-center mb-4 pt-3">
         <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${colorFrom} ${colorTo} flex items-center justify-center text-white mr-4`}>
-          {getIcon(iconName)}
+          {renderIcon(iconName)}
         </div>
         <div>
           <h3 className="text-lg font-semibold text-gray-900">{name}</h3>
@@ -85,7 +80,7 @@ const ProviderCard: React.FC<ProviderCardProps> = ({ provider }) => {
           View Orders <ExternalLink className="h-3 w-3 ml-1" />
         </button>
       </div>
-    </div>
+    </Card>
   );
 };
 

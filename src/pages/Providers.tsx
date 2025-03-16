@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ProviderCard from '../components/providers/ProviderCard';
 import ConnectProvider from '../components/providers/ConnectProvider';
 import { providerApi } from '../data/mockApi';
-import { Provider, AvailableProvider } from '../types/provider.types';
+import { Provider, AvailableProvider } from '../entities/provider';
 
 const Providers: React.FC = () => {
   const [connectedProviders, setConnectedProviders] = useState<Provider[]>([]);

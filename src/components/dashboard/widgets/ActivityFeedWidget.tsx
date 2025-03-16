@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { ExternalLink, Activity } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import { WidgetProps, ActivityItem } from '../../../entities/dashboard';
 import { dashboardApi } from '../../../data/mockApi';
-import { renderIcon } from '../../../shared/lib'
-
+import { renderIcon } from '../../../shared/lib';
 
 const ActivityFeedWidget: React.FC<WidgetProps> = ({ isEditMode, onRemove }) => {
   const [activities, setActivities] = useState<ActivityItem[]>([]);
@@ -52,7 +51,7 @@ const ActivityFeedWidget: React.FC<WidgetProps> = ({ isEditMode, onRemove }) => 
           {activities.slice(0, 3).map((activity) => (
             <div key={activity.id} className="px-6 py-4 flex items-start">
               <div className="h-10 w-10 rounded-full bg-indigo-800 flex items-center justify-center text-cyan-400 mr-4">
-                {activity.iconName ? renderIcon(activity.iconName) : <Activity className="h-5 w-5" />}
+                {activity.iconName ? renderIcon(activity.iconName) : renderIcon('Activity')}
               </div>
               <div>
                 <p className="text-gray-200">{activity.event}</p>

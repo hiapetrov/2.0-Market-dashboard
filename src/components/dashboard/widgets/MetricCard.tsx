@@ -14,7 +14,6 @@ const MetricCard: React.FC<MetricCardProps> = ({
 }) => {
   let bgColor, iconBg;
   
-  // Using our limited color palette
   switch(color) {
     case 'blue-300':
       bgColor = 'bg-gradient-to-r from-indigo-600 to-purple-600';

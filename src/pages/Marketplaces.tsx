@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import MarketplaceCard from '../components/marketplaces/MarketplaceCard';
 import ConnectMarketplace from '../components/marketplaces/ConnectMarketplace';
 import { marketplaceApi } from '../data/mockApi';
-import { Marketplace, AvailableMarketplace } from '../types/marketplace.types';
+import { Marketplace, AvailableMarketplace } from '../entities/marketplace';
 
 const Marketplaces: React.FC = () => {
   const [connectedMarketplaces, setConnectedMarketplaces] = useState<Marketplace[]>([]);
