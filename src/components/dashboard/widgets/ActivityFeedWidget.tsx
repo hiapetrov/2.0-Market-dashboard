@@ -1,22 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { ExternalLink, Activity, FileText, Instagram } from 'lucide-react';
-import { WidgetProps } from '../../../types/dashboard.types';
-import { ActivityItem } from '../../../types/dashboard.types';
+import { ExternalLink, Activity } from 'lucide-react';
+import { WidgetProps, ActivityItem } from '../../../entities/dashboard';
 import { dashboardApi } from '../../../data/mockApi';
+import { renderIcon } from '../../../shared/lib'
 
-// Helper function to render icon based on iconName
-const renderIcon = (iconName: string) => {
-  switch(iconName) {
-    case 'Activity':
-      return <Activity className="h-5 w-5" />;
-    case 'FileText':
-      return <FileText className="h-5 w-5" />;
-    case 'Instagram':
-      return <Instagram className="h-5 w-5" />;
-    default:
-      return <Activity className="h-5 w-5" />;
-  }
-};
 
 const ActivityFeedWidget: React.FC<WidgetProps> = ({ isEditMode, onRemove }) => {
   const [activities, setActivities] = useState<ActivityItem[]>([]);

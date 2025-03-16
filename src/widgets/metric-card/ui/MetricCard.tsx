@@ -1,8 +1,8 @@
-import React from 'react';
-import { MetricCardProps } from '../../../widgets/metric-card';
-import { renderIcon } from '../../../shared/lib';
+import React, { ReactNode } from 'react';
+import { MetricCardProps } from '../model/types';
+import { renderIcon } from '../../../shared/lib/icons/renderIcon';
 
-const MetricCard: React.FC<MetricCardProps> = ({
+export const MetricCard: React.FC<MetricCardProps> = ({
   title,
   value,
   icon,
@@ -14,7 +14,6 @@ const MetricCard: React.FC<MetricCardProps> = ({
 }) => {
   let bgColor, iconBg;
   
-  // Using our limited color palette
   switch(color) {
     case 'blue-300':
       bgColor = 'bg-gradient-to-r from-indigo-600 to-purple-600';
@@ -65,5 +64,3 @@ const MetricCard: React.FC<MetricCardProps> = ({
     </div>
   );
 };
-
-export default MetricCard;

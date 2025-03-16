@@ -1,7 +1,7 @@
 import React from 'react';
-import { AddWidgetButtonProps } from '../../features/widget-management';
+import { AddWidgetButtonProps } from '../model/types';
 
-const AddWidgetButton: React.FC<AddWidgetButtonProps> = ({ onClick }) => {
+export const AddWidgetButton: React.FC<AddWidgetButtonProps> = ({ onClick }) => {
   return (
     <div 
       className="bg-gray-800 border-2 border-dashed border-gray-700 rounded-lg p-8 flex flex-col items-center justify-center cursor-pointer hover:shadow-lg transition-all hover:border-gray-600"
@@ -15,5 +15,3 @@ const AddWidgetButton: React.FC<AddWidgetButtonProps> = ({ onClick }) => {
     </div>
   );
 };
-
-export default AddWidgetButton;
