@@ -1,91 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import DashboardHeader from '../components/dashboard/DashboardHeader';
 import { MetricCard } from '../widgets/metric-card';
-import TrafficAnalyticsWidget from '../components/dashboard/widgets/TrafficAnalyticsWidget';
-import ActivityFeedWidget from '../components/dashboard/widgets/ActivityFeedWidget';
-//import QuickActionsWidget from '../components/dashboard/widgets/QuickActionsWidget';
-//import TrafficSourcesWidget from '../components/dashboard/widgets/TrafficSourcesWidget';
-//import AddWidgetModal from '../components/dashboard/AddWidgetModal';
+import { TrafficAnalyticsWidget } from '../widgets/traffic-analytics';
+import { ActivityFeedWidget } from '../widgets/activity-feed';
+import { QuickActionsWidget } from '../widgets/quick-actions';
+import { TrafficSourcesWidget } from '../widgets/traffic-sources';
+import { AddWidgetButton, AddWidgetModal } from '../features/widget-management';
 import { dashboardApi } from '../data/mockApi';
-import { Widget, WidgetProps } from '../entities/dashboard';
-import { AddWidgetButton } from '../features/widget-management';
-
-// Mock the missing component (this would be replaced with actual components)
-const AddWidgetModal: React.FC<{
-  onClose: () => void, 
-  onAdd: (widgetId: string) => void, 
-  availableWidgets: Widget[], 
-  activeWidgets: string[]
-}> = ({ onClose, onAdd, availableWidgets, activeWidgets }) => (
-  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
-    <div className="bg-gray-800 p-6 rounded-lg max-w-lg w-full">
-      <h2 className="text-white text-xl mb-4">Select Widget</h2>
-      <div className="grid grid-cols-2 gap-3">
-        {availableWidgets.filter(w => !activeWidgets.includes(w.id)).map(widget => (
-          <button
-            key={widget.id}
-            className="bg-gray-700 hover:bg-gray-600 p-3 rounded-lg flex flex-col items-center"
-            onClick={() => onAdd(widget.id)}
-          >
-            <div className="mb-2">{widget.iconName}</div>
-            <span className="text-sm text-white">{widget.name}</span>
-          </button>
-        ))}
-      </div>
-      <div className="mt-4 flex justify-end">
-        <button onClick={onClose} className="bg-gray-700 text-white px-4 py-2 rounded-md">
-          Cancel
-        </button>
-      </div>
-    </div>
-  </div>
-);
-
-// Placeholder QuickActionsWidget component
-const QuickActionsWidget: React.FC<WidgetProps> = ({ isEditMode, onRemove }) => (
-  <div className="relative bg-gray-800 rounded-lg shadow-md p-6 mb-6 hover:shadow-lg transition-all border border-gray-700">
-    {isEditMode && onRemove && (
-      <button 
-        onClick={onRemove}
-        className="absolute -top-2 -right-2 bg-gray-700 text-red-400 rounded-full h-6 w-6 flex items-center justify-center shadow-sm hover:bg-gray-600"
-      >
-        ×
-      </button>
-    )}
-    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-t-lg"></div>
-    <h3 className="text-lg font-medium text-white mb-4 pt-3">Quick Actions</h3>
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
-      {/* Quick action buttons would be rendered here */}
-      <div className="bg-indigo-900 border border-indigo-700 rounded-lg p-4 flex flex-col items-center hover:bg-indigo-800">
-        <span className="text-cyan-400 mb-3">📝</span>
-        <span className="text-sm text-white">Create Content</span>
-      </div>
-      <div className="bg-purple-900 border border-purple-700 rounded-lg p-4 flex flex-col items-center hover:bg-purple-800">
-        <span className="text-cyan-400 mb-3">📱</span>
-        <span className="text-sm text-white">Post to Social</span>
-      </div>
-    </div>
-  </div>
-);
-
-// Placeholder TrafficSourcesWidget component
-const TrafficSourcesWidget: React.FC<WidgetProps> = ({ isEditMode, onRemove }) => (
-  <div className="relative bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-all border border-gray-700">
-    {isEditMode && onRemove && (
-      <button 
-        onClick={onRemove}
-        className="absolute -top-2 -right-2 bg-gray-700 text-red-400 rounded-full h-6 w-6 flex items-center justify-center shadow-sm hover:bg-gray-600"
-      >
-        ×
-      </button>
-    )}
-    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-t-lg"></div>
-    <h3 className="text-lg font-medium text-white mb-4 pt-3">Traffic Sources</h3>
-    <div className="flex justify-center items-center h-64">
-      <div className="text-white">Pie chart placeholder</div>
-    </div>
-  </div>
-);
+import { Widget } from '../entities/dashboard';
+import { Eye, Check, Clock } from 'lucide-react';
 
 const Dashboard: React.FC = () => {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -147,6 +70,20 @@ const Dashboard: React.FC = () => {
     );
   }
   
+  // Render icon based on metric type
+  const renderMetricIcon = (iconName: string) => {
+    switch(iconName) {
+      case 'Eye':
+        return <Eye size={24} />;
+      case 'Check':
+        return <Check size={24} />;
+      case 'Clock':
+        return <Clock size={24} />;
+      default:
+        return <Eye size={24} />;
+    }
+  };
+  
   return (
     <div className="mb-8">
       {/* Dashboard Header with Edit Controls */}
@@ -164,7 +101,7 @@ const Dashboard: React.FC = () => {
               <MetricCard 
                 title={metricsData.visitors.title}
                 value={metricsData.visitors.value}
-                icon={metricsData.visitors.icon}
+                icon={renderMetricIcon(metricsData.visitors.iconName)}
                 color={metricsData.visitors.color}
                 progress={metricsData.visitors.progress}
                 target={metricsData.visitors.target}
@@ -180,7 +117,7 @@ const Dashboard: React.FC = () => {
               <MetricCard 
                 title={metricsData.conversion.title}
                 value={metricsData.conversion.value}
-                icon={metricsData.conversion.icon}
+                icon={renderMetricIcon(metricsData.conversion.iconName)}
                 color={metricsData.conversion.color}
                 progress={metricsData.conversion.progress}
                 target={metricsData.conversion.target}
@@ -196,7 +133,7 @@ const Dashboard: React.FC = () => {
               <MetricCard 
                 title={metricsData.timeOnSite.title}
                 value={metricsData.timeOnSite.value}
-                icon={metricsData.timeOnSite.icon}
+                icon={renderMetricIcon(metricsData.timeOnSite.iconName)}
                 color={metricsData.timeOnSite.color}
                 progress={metricsData.timeOnSite.progress}
                 target={metricsData.timeOnSite.target}
@@ -267,4 +204,4 @@ const Dashboard: React.FC = () => {
   );
 };
 
-export default Dashboard
+export default Dashboard;
