@@ -3,7 +3,8 @@ import MainLayout from './components/layout/MainLayout';
 import Dashboard from './pages/Dashboard';
 import Marketplaces from './pages/Marketplaces';
 import Providers from './pages/Providers';
-import { AppProviders } from './app/providers';
+import { AppProviders } from './app/providers'
+import { ErrorBoundary } from './shared/ui';
 
 const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -30,3 +31,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+

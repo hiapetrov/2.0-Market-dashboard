@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
+import { WidgetSkeleton } from '../../../shared/ui/loading';
 import { TrafficAnalyticsWidgetProps, TimeRangeOption } from '../model/types';
 import { dashboardApi } from '../../../shared/api';
 
@@ -57,9 +58,7 @@ export const TrafficAnalyticsWidget: React.FC<TrafficAnalyticsWidgetProps> = ({ 
       </div>
       
       {loading ? (
-        <div className="flex justify-center items-center h-64">
-          <div className="text-white">Loading data...</div>
-        </div>
+        <WidgetSkeleton hasContent={true} contentRows={5} className="h-64" />
       ) : (
         <ResponsiveContainer width="100%" height={300}>
           <LineChart data={trafficData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>

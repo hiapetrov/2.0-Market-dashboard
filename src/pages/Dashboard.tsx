@@ -7,7 +7,8 @@ import { QuickActionsWidget } from '../widgets/quick-actions';
 import { TrafficSourcesWidget } from '../widgets/traffic-sources';
 import { AddWidgetButton, AddWidgetModal } from '../features/widget-management';
 import { Eye, Check, Clock } from 'lucide-react';
-import { useDashboard } from '../app/providers';
+import { useDashboard } from '../app/providers'
+import { WidgetSkeleton } from '../shared/ui/loading';
 
 const Dashboard: React.FC = () => {
   const { 
@@ -25,9 +26,25 @@ const Dashboard: React.FC = () => {
   
   if (loading) {
     return (
-      <div className="h-full w-full flex items-center justify-center p-12">
-        <div className="text-white text-xl">Loading dashboard...</div>
+      <div className="mb-8">
+      <div className="flex justify-between items-center mb-6">
+        <WidgetSkeleton hasTitle={true} hasContent={false} className="w-full h-12" />
       </div>
+      
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <WidgetSkeleton />
+        <WidgetSkeleton />
+        <WidgetSkeleton />
+      </div>
+      
+      <WidgetSkeleton contentRows={6} className="mb-8" />
+      <WidgetSkeleton contentRows={4} className="mb-6" />
+      
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+        <WidgetSkeleton contentRows={4} />
+        <WidgetSkeleton contentRows={4} />
+      </div>
+    </div>
     );
   }
   
@@ -169,3 +186,4 @@ const Dashboard: React.FC = () => {
 };
 
 export default Dashboard;
+

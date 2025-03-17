@@ -1,2 +1,5 @@
 node_modules/
 packaje-lock.json
+
+# Backup directories
+backup_legacy_*
