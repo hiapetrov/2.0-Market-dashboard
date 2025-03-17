@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import DashboardHeader from '../components/dashboard/DashboardHeader';
 import { MetricCard } from '../widgets/metric-card';
 import { TrafficAnalyticsWidget } from '../widgets/traffic-analytics';
@@ -6,61 +6,22 @@ import { ActivityFeedWidget } from '../widgets/activity-feed';
 import { QuickActionsWidget } from '../widgets/quick-actions';
 import { TrafficSourcesWidget } from '../widgets/traffic-sources';
 import { AddWidgetButton, AddWidgetModal } from '../features/widget-management';
-import { dashboardApi } from '../data/mockApi';
-import { Widget } from '../entities/dashboard';
 import { Eye, Check, Clock } from 'lucide-react';
+import { useDashboard } from '../app/providers';
 
 const Dashboard: React.FC = () => {
-  const [isEditMode, setIsEditMode] = useState(false);
+  const { 
+    isEditMode, 
+    activeWidgets, 
+    availableWidgets, 
+    metricsData, 
+    loading,
+    toggleEditMode,
+    addWidget,
+    removeWidget
+  } = useDashboard();
+  
   const [showAddWidgetModal, setShowAddWidgetModal] = useState(false);
-  const [availableWidgets, setAvailableWidgets] = useState<Widget[]>([]);
-  const [activeWidgets, setActiveWidgets] = useState<string[]>([]);
-  const [metricsData, setMetricsData] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        // Fetch all data in parallel
-        const [widgetsData, activeWidgetsData, metrics] = await Promise.all([
-          dashboardApi.getAvailableWidgets(),
-          dashboardApi.getActiveWidgets(),
-          dashboardApi.getMetricsData()
-        ]);
-        
-        setAvailableWidgets(widgetsData);
-        setActiveWidgets(activeWidgetsData);
-        setMetricsData(metrics);
-      } catch (error) {
-        console.error('Error fetching dashboard data:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    
-    fetchData();
-  }, []);
-  
-  const toggleEditMode = () => {
-    if (isEditMode) {
-      // If we're exiting edit mode, save the current layout
-      dashboardApi.updateActiveWidgets(activeWidgets);
-    }
-    setIsEditMode(!isEditMode);
-    setShowAddWidgetModal(false);
-  };
-  
-  const removeWidget = (widgetId: string) => {
-    setActiveWidgets(activeWidgets.filter(id => id !== widgetId));
-  };
-  
-  const addWidget = (widgetId: string) => {
-    if (!activeWidgets.includes(widgetId)) {
-      setActiveWidgets([...activeWidgets, widgetId]);
-    }
-    setShowAddWidgetModal(false);
-  };
   
   if (loading) {
     return (
@@ -196,7 +157,10 @@ const Dashboard: React.FC = () => {
         <AddWidgetModal 
           availableWidgets={availableWidgets}
           activeWidgets={activeWidgets}
-          onAdd={addWidget}
+          onAdd={(widgetId) => {
+            addWidget(widgetId);
+            setShowAddWidgetModal(false);
+          }}
           onClose={() => setShowAddWidgetModal(false)}
         />
       )}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { TrafficAnalyticsWidgetProps, TimeRangeOption } from '../model/types';
-import { dashboardApi } from '../../../data/mockApi';
+import { dashboardApi } from '../../../shared/api';
 
 export const TrafficAnalyticsWidget: React.FC<TrafficAnalyticsWidgetProps> = ({ isEditMode, onRemove }) => {
   const [trafficData, setTrafficData] = useState<any[]>([]);

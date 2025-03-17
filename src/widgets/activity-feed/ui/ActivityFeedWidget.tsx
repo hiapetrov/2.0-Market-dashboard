@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ExternalLink } from 'lucide-react';
 import { ActivityFeedWidgetProps } from '../model/types';
 import { ActivityItem } from '../../../entities/dashboard';
-import { dashboardApi } from '../../../data/mockApi';
+import { dashboardApi } from '../../../shared/api';
 import { renderIcon } from '../../../shared/lib';
 
 export const ActivityFeedWidget: React.FC<ActivityFeedWidgetProps> = ({ isEditMode, onRemove }) => {

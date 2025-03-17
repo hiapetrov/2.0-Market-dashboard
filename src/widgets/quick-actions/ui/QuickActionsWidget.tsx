@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { QuickActionsWidgetProps } from '../model/types';
 import { QuickAction } from '../../../entities/dashboard';
-import { dashboardApi } from '../../../data/mockApi';
+import { dashboardApi } from '../../../shared/api';
 import { renderIcon } from '../../../shared/lib';
 
 export const QuickActionsWidget: React.FC<QuickActionsWidgetProps> = ({ isEditMode, onRemove }) => {

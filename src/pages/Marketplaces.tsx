@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import MarketplaceCard from '../components/marketplaces/MarketplaceCard';
 import ConnectMarketplace from '../components/marketplaces/ConnectMarketplace';
-import { marketplaceApi } from '../data/mockApi';
+import { marketplaceApi } from '../shared/api';
 import { Marketplace, AvailableMarketplace } from '../entities/marketplace';
 
 const Marketplaces: React.FC = () => {

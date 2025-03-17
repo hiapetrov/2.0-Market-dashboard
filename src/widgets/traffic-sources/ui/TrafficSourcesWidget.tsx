@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
 import { TrafficSourcesWidgetProps } from '../model/types';
 import { ChannelDataPoint } from '../../../entities/dashboard';
-import { dashboardApi } from '../../../data/mockApi';
+import { dashboardApi } from '../../../shared/api';
 
 export const TrafficSourcesWidget: React.FC<TrafficSourcesWidgetProps> = ({ isEditMode, onRemove }) => {
   const [channelData, setChannelData] = useState<ChannelDataPoint[]>([]);

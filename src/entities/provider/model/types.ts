@@ -2,7 +2,7 @@ export interface ProviderStats {
   products: number;
   inProduction: number;
   fulfilled: number;
-  status: 'operational' | 'issues' | 'down';
+  status: string;
 }
 
 export interface Provider {
